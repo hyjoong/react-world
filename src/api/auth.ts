@@ -1,17 +1,16 @@
 import { BASE_URL } from '@/constants/api';
-import { LoginRequest } from '@/types/auth';
+import { LoginRequest, UserResponse } from '@/types/auth';
 
-export const sendLoginRequest = async (user: LoginRequest) => {
-  try {
-    const data = await fetch(`${BASE_URL}/users/login`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
+export const sendLoginRequest = (user: LoginRequest): Promise<UserResponse> => {
+  return fetch(`${BASE_URL}/users/login`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error(err);
     });
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
 };
