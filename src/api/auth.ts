@@ -14,3 +14,19 @@ export const sendLoginRequest = (user: LoginRequest): Promise<UserResponse> => {
       console.error(err);
     });
 };
+
+export const sendSignupRequest = (
+  user: LoginRequest,
+): Promise<UserResponse> => {
+  return fetch(`${BASE_URL}/users`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error(err);
+    });
+};
