@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { LoginForm } from '@/types/auth';
 import { sendLoginRequest } from '@/api/auth';
 import { useRouter } from 'next/navigation';
+import { setCookie } from '@/utils/cookie';
 
 const SignInPage = () => {
   const { push } = useRouter();
@@ -28,8 +29,7 @@ const SignInPage = () => {
           return;
         }
         // TODO: token storage 저장
-        const userInfo = res.user.token;
-
+        setCookie('accessToken', res.user.token);
         push('/');
       })
       .catch((err) => {
