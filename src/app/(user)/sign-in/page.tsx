@@ -22,14 +22,23 @@ export const getCurrentUser = () => {
       console.error(err);
     });
 };
-
 const SignInPage = () => {
+  async function setToken(token: string) {
+    'use server';
+    cookies().set({
+      name: 'accessToken',
+      value: token,
+      path: '/',
+      maxAge: 60 * 60,
+    });
+  }
+
   const isUserLoggedIn = getCurrentUser();
 
   if (isUserLoggedIn) {
     redirect('/');
   }
-  return <LoginForm />;
+  return <LoginForm setToken={setToken} />;
 };
 
 export default SignInPage;
