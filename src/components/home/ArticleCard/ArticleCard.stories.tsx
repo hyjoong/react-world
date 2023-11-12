@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { PostCard } from '.';
-import { PostCardList } from '../PostCardList';
+import { ArticleCard } from '.';
+import { ArticleCardList } from '../ArticleCardList';
 
 const sotryMeta: Meta = {
-  title: 'components/home/Postcard',
-  component: PostCard,
+  title: 'components/home/ArticleCard',
+  component: ArticleCard,
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -14,7 +14,7 @@ const sotryMeta: Meta = {
 
 export default sotryMeta;
 
-type Story = StoryObj<typeof PostCardList>;
+type Story = StoryObj<typeof ArticleCardList>;
 
 export const Default: Story = {
   args: {},

@@ -1,13 +1,15 @@
 import React from 'react';
-import { PostCardList } from '@/components/home/PostCardList';
 import { TagList } from '@/components/home/TagList';
 import { TEMP_TAGS } from '@/constants';
+import { getGlobalArticles } from '@/api/articles';
+import { ArticleCardList } from '@/components/home/ArticleCardList';
 
-const RootPage = () => {
-   return (
+const RootPage = async () => {
+  const data = await getGlobalArticles();
+  return (
     <div>
       <div className="flex">
-        <PostCardList />
+        <ArticleCardList articles={data.articles} />
         <TagList tags={TEMP_TAGS} />
       </div>
     </div>

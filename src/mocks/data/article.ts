@@ -7,6 +7,6 @@ const generateArticle = () => {
   };
 };
 
-export const articles: Article[] = [
+export const articles = [
   ...Array.from({ length: 20 }, () => generateArticle()),
 ];

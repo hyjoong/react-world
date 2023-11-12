@@ -5,7 +5,7 @@ type UserProfile = {
   following: boolean;
 };
 
-type Article = {
+export type Article = {
   slug: string;
   title: string;
   description: string;
