@@ -4,7 +4,7 @@ export type LoginForm = {
 };
 
 export type LoginRequest = {
-  user: LoginForm;
+  user: LoginForm | User;
 };
 
 type User = {
