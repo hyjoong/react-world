@@ -1,10 +1,10 @@
-'use client';
-
-import React from 'react';
 import { Badge } from '@/components/ui/Badge/Badge';
-import { TagListProps } from './TagList.type';
+import { getTags } from '@/api/tags';
 
-export const TagList = ({ tags }: TagListProps) => {
+export const TagList = async () => {
+  // TODO: error handling
+  const { tags } = await getTags();
+
   return (
     <div className="w-[400px] py-2">
       <p className="text-xl font-bold mb-3">Popular Tags</p>
