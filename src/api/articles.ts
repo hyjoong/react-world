@@ -2,10 +2,10 @@ import { BASE_URL } from '@/constants/api';
 import { ArticlesResponse } from '@/types/article';
 
 // TODO: limit 값 로직 추가, 캐싱 주기 설정
-export const getGlobalArticles = (
-  limit?: number,
-): Promise<ArticlesResponse> => {
-  return fetch(`${BASE_URL}/articles`, {
+export const getArticles = (tag?: string): Promise<ArticlesResponse> => {
+  const url = tag ? `${BASE_URL}/articles?tag=${tag}` : `${BASE_URL}/articles`;
+
+  return fetch(url, {
     cache: 'no-store',
     method: 'get',
     headers: {
