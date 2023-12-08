@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button/Button';
-import { ModeToggle } from '@/components/theme/ThemeToggle';
+import { ModeToggle } from '@/components/providers/ThemeToggle';
 
 export const Navbar = () => {
   const router = useRouter();

@@ -2,7 +2,7 @@ import './globals.css';
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
-import { ThemeProvider } from '@/components/theme/ThemeProvider';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { MSWProvider } from '@/mocks/MSWProvider';
 
 export const metadata: Metadata = {
