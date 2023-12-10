@@ -17,3 +17,16 @@ export const getArticles = (tag?: string): Promise<ArticlesResponse> => {
       console.error(err);
     });
 };
+
+export const getArticle = (slug: string) => {
+  return fetch(`${BASE_URL}/articles/${slug}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error(err);
+    });
+};
