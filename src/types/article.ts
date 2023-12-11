@@ -1,3 +1,5 @@
+import { ProfileResponse } from './profile';
+
 type UserProfile = {
   username: string;
   bio: string;
@@ -21,4 +23,22 @@ export type Article = {
 export type ArticlesResponse = {
   articles: Article[];
   articlesCount: number;
+};
+
+export type FeedResponse = {
+  article: {
+    slug: string;
+    title: string;
+    description: string;
+    body: string;
+    tagList: string[];
+    createdAt: string;
+    updatedAt: string;
+    favorited: boolean;
+    favoritesCount: number;
+    author: ProfileResponse['profile'];
+  };
+  errors?: unknown;
+  status?: string;
+  message?: string;
 };
