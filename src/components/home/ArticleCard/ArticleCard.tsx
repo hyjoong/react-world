@@ -5,10 +5,10 @@ import { TEMP_CONTENT } from '@/constants';
 import { ArticleCardProps } from './ArticleCard.type';
 
 export const ArticleCard = ({ article }: ArticleCardProps) => {
-  const { title, description, tagList } = article;
+  const { title, description, tagList, slug } = article;
 
   return (
-    <div className="flex items-center h-[200px] gap-[50px]">
+    <div className="flex items-center h-[270px] gap-[50px] overflow-hidden">
       <div className="min-w-[200px] min-h-[200px] bg-slate-500"></div>
       <div className="flex-col">
         <div className="flex items-center">
@@ -19,7 +19,7 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
             </Badge>
           ))}
         </div>
-        <Link href="/post/1">
+        <Link href={`/article/${slug}`}>
           <p className="text-2xl mb-2">{title}</p>
           <span className="text-gray-300">
             {description}
