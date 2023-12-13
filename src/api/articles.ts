@@ -1,5 +1,5 @@
 import { BASE_URL } from '@/constants/api';
-import { ArticlesResponse } from '@/types/article';
+import { ArticlesResponse, FeedResponse } from '@/types/article';
 
 // TODO: limit 값 로직 추가, 캐싱 주기 설정
 export const getArticles = (tag?: string): Promise<ArticlesResponse> => {
@@ -18,7 +18,7 @@ export const getArticles = (tag?: string): Promise<ArticlesResponse> => {
     });
 };
 
-export const getArticle = (slug: string) => {
+export const getArticle = (slug: string): Promise<FeedResponse> => {
   return fetch(`${BASE_URL}/articles/${slug}`, {
     method: 'get',
     headers: {
