@@ -1,9 +1,10 @@
 'use client';
 
-import { sendSignupRequest } from '@/api/auth';
-import { Button } from '@/components/ui/Button';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { sendSignupRequest } from '@/api/auth';
+import { useFunnel } from '@/hooks/useFunnel/useFunnel';
+import { Button } from '@/components/ui/Button';
 
 const SignUpPage = () => {
   const { push } = useRouter();
@@ -14,11 +15,9 @@ const SignUpPage = () => {
     password: '',
   });
 
-  const isFormValid = Object.values(formData).every((value) => value !== '');
+  // TODO: submit loading state & disable button
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const handleregisterUser = async () => {
     const user = {
       user: {
         ...formData,
@@ -38,6 +37,13 @@ const SignUpPage = () => {
         console.log(err);
       });
   };
+  // TODO: magic number 상수화
+  const [Funnel, activeStepIndex, setStep] = useFunnel(
+    ['username', 'email', 'password'],
+    {
+      initialStep: 'username',
+    },
+  );
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -45,22 +51,35 @@ const SignUpPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex-col">
-        <input
-          name="username"
-          placeholder="username"
-          onChange={handleInputChange}
-        />
-        <input name="email" placeholder="email" onChange={handleInputChange} />
-        <input
-          name="password"
-          placeholder="password"
-          onChange={handleInputChange}
-        />
-        <Button disabled={!isFormValid}>Sign Up</Button>
-      </div>
-    </form>
+    <div>
+      <p>{activeStepIndex}</p>
+      <Funnel>
+        <Funnel.Step name="username">
+          <input
+            name="username"
+            placeholder="username"
+            onChange={handleInputChange}
+          />
+          <Button onClick={() => setStep('email')}>다음</Button>
+        </Funnel.Step>
+        <Funnel.Step name="email">
+          <input
+            name="email"
+            placeholder="email"
+            onChange={handleInputChange}
+          />
+          <Button onClick={() => setStep('password')}>다음</Button>
+        </Funnel.Step>
+        <Funnel.Step name="password">
+          <input
+            name="password"
+            placeholder="password"
+            onChange={handleInputChange}
+          />
+          <Button onClick={handleregisterUser}>회원가입</Button>
+        </Funnel.Step>
+      </Funnel>
+    </div>
   );
 };
 
