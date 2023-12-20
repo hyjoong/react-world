@@ -4,8 +4,8 @@ import { Badge } from '@/components/ui/Badge/Badge';
 import { TEMP_CONTENT } from '@/constants';
 import { ArticleCardProps } from './ArticleCard.type';
 
-export const ArticleCard = ({ article }: ArticleCardProps) => {
-  const { title, description, tagList, slug } = article;
+export const ArticleCard = ({ article, onClick }: ArticleCardProps) => {
+  const { title, description, tagList, slug, favorited } = article;
 
   return (
     <div className="flex items-center h-[270px] gap-[50px] overflow-hidden">
@@ -18,6 +18,9 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
               {tag}
             </Badge>
           ))}
+          <button onClick={() => onClick(slug)}>
+            {favorited ? '좋아요눌림' : '좋아요누르기'}
+          </button>
         </div>
         <Link href={`/article/${slug}`}>
           <p className="text-2xl mb-2">{title}</p>
